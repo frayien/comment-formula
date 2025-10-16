@@ -66,6 +66,7 @@ class Transformer {
 
   public async from(tex: string, color?: string): Promise<FormulaPreview> {
     let width: number, height: number, code: string
+    tex = tex.replaceAll(/^[^\S\n]*(?:\*|\/{2,})[^\S\n]*/gm, '')
     if (this.useAPI.value) {
       const data = await fetch([
         config.extension.api.prefix,
